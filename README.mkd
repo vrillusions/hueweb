@@ -1,3 +1,30 @@
 # HueWeb
 
 Web site to control Hue lights.
+
+## Caution
+
+- This is intended to be run behind a firewall on the local network. This means there's no access restrictions, intended to be run using flask's built in server, and just generally not designed for high traffic use.  It can be modified to do so but just keep in mind it currently should not be accessible on the internet.
+- Until version 1.0.0 assume any new commit will completely change things. If you are using an early version then just assume with each commit things are going to break.
+
+## Requirements
+
+These can be installed using `pip install -r requirements.txt`. Use of virtualenv is highly recommended.
+
+- Python v2.6+
+- Flask
+- phue
+- Fabric (optional)
+
+## Setup
+
+These directions assume you are going to use virtualenv and that it's already installed.
+
+    mkvirtualenv -a ~/path/to/hueweb hueweb
+    pip install -r requirements.txt
+    # Optionally install fabric (note you will need build tools for this)
+    pip install fabric
+    cp hueweb/default_config.py instance/config.py
+    # edit instance/config.py with any local changes if needed
+    fab start  -or-  ./runserver.py
+    # if you used fab start then it will be running in a screen session called hueweb

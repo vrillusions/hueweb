@@ -1,5 +1,5 @@
 
-# vim:ts=4:sw=4:ft=python:fileencoding=utf-8
+# vim: set fileencoding=utf-8 :
 
 from __future__ import (division, absolute_import, print_function,
                         unicode_literals)
@@ -42,11 +42,11 @@ def local_basedir():
 
 
 # Begin tasks
-#@task
-def start_dev(address='0.0.0.0:8080'):
-    """Start a dev instance listening on 0.0.0.0:8080."""
+@task
+def start():
+    """Start server inside screen session."""
     with local_basedir():
-        local('python manage.py runserver {}'.format(address))
+        local('screen -dmS hueweb ./runserver.py')
 
 
 @task
@@ -69,3 +69,10 @@ def install(requirements='requirements'):
         abort(red('Currently not in a virtualenv, canceling'))
     with local_basedir():
         local('pip install -r {}.txt'.format(requirements))
+
+
+@task
+def clean():
+    """Cleans .pyc and other temporary files."""
+    with local_basedir():
+        local('find . -name "*.pyc" -delete')
