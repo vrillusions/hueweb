@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+{% block body %}
+<h1>Setup</h1>
+
+<p>First enter the following information. Values have been prefilled but you can change it</p>
+
+<form class="form-horizontal" role="form" action="/initial_setup" method="post">
+    <div class="form-group">
+        <label for="apiKey" class="col-sm-2 control-label">API User</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="api_user" value="{{ api_user }}" placeholder="API User">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description" class="col-sm-2 control-label">Description
+            <a href="#" class="hw-tooltip" data-toggle="tooltip" title="api docs calls this devicetype">?</a></label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="api_description" value="{{ api_description }}" placeholder="Description">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
