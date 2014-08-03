@@ -1,0 +1,4 @@
+{% macro navbar_css(section) -%}
+{% if request.blueprint == section %} class="active"
+{%- elif section == 'main' and request.blueprint is none %} class="active"{% endif %}
+{%- endmacro %}

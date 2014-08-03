@@ -1,11 +1,12 @@
+{% from 'macros/_navbar_css.html' import navbar_css with context %}
 <!DOCTYPE html>
 <html>
   <head>
     <title>hueweb</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap -->
-    <link href="static/css/bootstrap.min.css" rel="stylesheet">
-    <link href="static/css/hueweb.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/hueweb.css') }}" rel="stylesheet">
   </head>
   <body>
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -21,13 +22,13 @@
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Main</a></li>
-            <li><a href="/config">Config</a></li>
-            <li><a href="/groups">Groups</a></li>
-            <li><a href="/lights">Lights</a></li>
-            <li><a href="/scenes">Scenes</a></li>
-            <li><a href="/schedules">Schedules</a></li>
-            <li><a href="/about">About</a></li>
+            <li{{ navbar_css('main') }}><a href="/">Main</a></li>
+            <li{{ navbar_css('config') }}><a href="/config">Config</a></li>
+            <li{{ navbar_css('groups') }}><a href="/groups">Groups</a></li>
+            <li{{ navbar_css('lights') }}><a href="/lights">Lights</a></li>
+            <li{{ navbar_css('scenes') }}><a href="/scenes">Scenes</a></li>
+            <li{{ navbar_css('schedules') }}><a href="/schedules">Schedules</a></li>
+            <li{{ navbar_css('about') }}><a href="/about">About</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -42,11 +43,11 @@
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="static/js/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
     <!-- Custom js -->
-    <script src="static/js/hueweb.js"></script>
+    <script src="{{ url_for('static', filename='js/hueweb.js') }}"></script>
   </body>
 </html>
 

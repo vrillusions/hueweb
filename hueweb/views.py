@@ -12,17 +12,8 @@ from functools import wraps
 from flask import send_from_directory, g, request, redirect, url_for
 
 from . import app
-from . import __version__ as app_version
-from .utils.templated import templated
-
-
-def require_setup(func):
-    @wraps(func)
-    def decorated_function(*args, **kwargs):
-        if 'api_user' not in app.config:
-            return redirect(url_for('initial_setup'))
-        return func(*args, **kwargs)
-    return decorated_function
+from .metadata import __version__ as app_version
+from .lib.decorators import templated, require_setup
 
 
 @app.route('/')
@@ -50,9 +41,14 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
             'favicon.ico', mimetype='image/x-icon')
 
-@app.route('/about')
-@templated('about.html')
-def about():
-    values = {}
-    values['version'] = app_version
-    return values
+#@app.route('/about')
+#@templated('about.html')
+#def about():
+#    values = {}
+#    values['version'] = app_version
+#    return values
+
+# DEBUGGING
+# look in to using logging.debug() instead
+# print url rules
+#print(app.url_map)
