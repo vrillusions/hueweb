@@ -18,6 +18,9 @@ LOGGER_NAME = 'hueweb'
 # What to listen on when running internal server
 LISTEN_ADDRESS = '0.0.0.0'
 
+# Database settings
+SQLALCHEMY_DATABASE_URI = 'sqlite://'
+
 # api credentials (not intended to be set in default config)
 #api_user = 'SomeRandomWords'
 #api_description = 'HueWeb'
