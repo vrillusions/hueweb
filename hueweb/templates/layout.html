@@ -1,14 +1,14 @@
+{% extends 'bootstrap/base.html' %}
 {% from 'macros/_navbar_css.html' import navbar_css with context %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>hueweb</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+
+{% block title %}hueweb{% endblock -%}
+
+{% block styles %}
+{{ super() }}
     <link href="{{ url_for('static', filename='css/hueweb.css') }}" rel="stylesheet">
-  </head>
-  <body>
+{%- endblock %}
+
+{% block navbar -%}
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -33,21 +33,20 @@
         </div><!--/.nav-collapse -->
       </div>
     </div>
+{%- endblock %}
 
-    {% for message in get_flashed_messages() %}
+{% block content -%}
+    {% for message in get_flashed_messages() -%}
       <div class="alert alert-info">{{ message }}</div>
-    {% endfor %}
+    {%- endfor %}
 
     <div class="container">
-    {% block body %}{% endblock %}
+    {%- block content_container %}{% endblock -%}
     </div>
+{%- endblock %}
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+{% block scripts -%}
+{{ super() }}
     <!-- Custom js -->
     <script src="{{ url_for('static', filename='js/hueweb.js') }}"></script>
-  </body>
-</html>
-
+{%- endblock %}
